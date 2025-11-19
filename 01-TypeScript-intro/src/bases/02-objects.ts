@@ -22,8 +22,18 @@ export const pikachu:Pokemon = {
 // Si no rellenamos los campos de la interfaz Pokemon nos dara un error, o si lo agregamos con un valor inadecuado tambien
 // Aqui solo agregamos el nombre y nos da error, porque nos falta el id
 
-// export const charmander: Pokemon ={
-//     name:'Charmander';
-// }
+export const charmander: Pokemon ={
+    id: 2,
+    name:'Charmander',
+    age:5
+}
 
 console.log('[Pikachu]: ', pikachu)
+
+
+// Aqui declaramos que la variable pokemons es un array de la interfaz Pokemon
+export const pokemons: Pokemon[] = [];
+
+pokemons.push(pikachu, charmander)
+
+console.log('[Pokemons]: ', pokemons)
