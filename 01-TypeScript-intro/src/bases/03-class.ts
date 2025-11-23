@@ -1,3 +1,6 @@
+import axios from "axios";
+import type { PokeapiResponse } from "../interfaces/pokeapi-response.interface";
+
 // Las interfaces sirven para hacer moldes, mientras que las clases permiten crear instancias, es decir, las clases son mas poderosas que una interfaz.
 export class Pokemon{
 
@@ -37,20 +40,24 @@ export class Pokemon{
     public speak(){
         console.log(`${this.name}, ${this.name}`)
     }
+
+    // Obtiene los movimientos del pokemon desde la API y los muestra por consola
+    public async getMoves(): Promise<void> {
+        const { data } = await axios.get<PokeapiResponse>(`https://pokeapi.co/api/v2/pokemon/${this.id}`)
+        console.log('[getMoves]: ', data?.moves)
+    }
 }
 
 export const venusaur = new Pokemon(3, 'Venusaur')
 console.log (venusaur)
 venusaur.scream()
 venusaur.speak()
+venusaur.getMoves()
 
 
 // La forma mas corta de crear una clase es la siguiente:
 
 // export class PokemonCorto {
 //     constructor(
-//         public readonly id: number, // La propiedad readonly permite no cambiar el id asignado, solo leerlo
-//         public name:string
-//     ) {}
-// }
+// getMoves moved into the Pokemon class as `public async getMoves(): Promise<void> { ... }`/ }
 
