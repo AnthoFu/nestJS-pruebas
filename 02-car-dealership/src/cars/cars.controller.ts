@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 
 
 
@@ -8,5 +8,11 @@ import { Controller, Get } from '@nestjs/common';
         @Get()
         getAllCars(){
         return this.cars
+    }
+
+    @Get(':id')
+    getCarById( @Param ('id') id){
+        console.log('getCarById:',{id: +id})
+        return this.cars[id];
     }
 }
