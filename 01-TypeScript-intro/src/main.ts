@@ -3,14 +3,18 @@ import './style.css'
 // import { pikachu, pokemonIds } from './bases/02-objects.ts'
 // import { charmander } from './bases/02-objects.ts'
 // import { venusaur } from './bases/03-class';
-import {  } from "./bases/05-decorators";
+//import { charmander } from "./bases/05-decorators";
+import { charmander } from './bases/06-decorators2'
+
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
   <h1>Proyecto corriendo</h1>
     </div>
   `
-// <h1>¡Hola ${name}!</h1>
+
+
+  // <h1>¡Hola ${name}!</h1>
 //     <h2>Tengo ${age} años de edad</h2>
 //     <p>${pokemonIds.join(' , ')}!!</p>
 //     <p>El pokemon elegido es: <b>${pikachu.name}</b></p>
