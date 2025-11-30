@@ -1,14 +1,15 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
-@Controller('cars')
-    export class CarsController {
+@Controller('cars') // Si agregamos los pipes aca en el controlador, todos los metodos podran utilizar este pipe
+@UsePipes(ValidationPipe)
+export class CarsController {
 
         constructor(
             private readonly carsService: CarsService
         ){}
-        
-        @Get()
+
+        @Get() 
         getAllCars(){
         return this.carsService.findAll()
     }
@@ -19,7 +20,8 @@ import { CreateCarDto } from './dto/create-car.dto';
         return this.carsService.findOneById(id);
     }
 
-    @Post()
+    @Post() // También podemos agregar los pipes directamente en los metodos
+    //@UsePipes(ValidationPipe)
     createCar( @Body() createCarDto:CreateCarDto ){
         return createCarDto;
     }
