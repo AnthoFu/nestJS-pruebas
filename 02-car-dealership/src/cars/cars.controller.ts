@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patc
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
 @Controller('cars') // Si agregamos los pipes aca en el controlador, todos los metodos podran utilizar este pipe
-@UsePipes(ValidationPipe)
+//@UsePipes(ValidationPipe)
 export class CarsController {
 
         constructor(
