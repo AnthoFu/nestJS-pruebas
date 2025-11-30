@@ -13,7 +13,7 @@ import { CarsService } from './cars.service';
     }
 
     @Get(':id')
-    getCarById( @Param ('id', ParseIntPipe) id:number){
+    getCarById( @Param ('id') id:string){
         console.log('getCarById:', {id})
         return this.carsService.findOneById(id);
     }
