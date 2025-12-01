@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { v4 as uuid} from 'uuid'
 import { Car } from './interfaces/car.interface';
+import { CreateCarDto } from './dto/create-car.dto';
 
 // Importamos y agregamos los id unicos de los carros como si vinieran de una base de datos
 
@@ -38,6 +39,21 @@ export class CarsService {
             if (!car) {
                 throw new NotFoundException(`El carro con el id:${id} no fue encontrado.`);
             }
+            return car;
+        }
+
+        create ( createCarDto:CreateCarDto ){
+            const car:Car = {
+                id: uuid(),
+                ...createCarDto
+                // Tambien se puede hacer de la siguiente manera:
+                // model: createCarDto.brand,
+                // brand: createCarDto.model
+            }
+            
+            // utilizamos el metodo push para agregarlos al array actual
+            this.cars.push(car)
+
             return car;
         }
     }
