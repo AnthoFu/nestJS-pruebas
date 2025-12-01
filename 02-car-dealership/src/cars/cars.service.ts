@@ -1,7 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { v4 as uuid} from 'uuid'
 import { Car } from './interfaces/car.interface';
-import { CreateCarDto } from './dto/create-car.dto';
+import { CreateCarDto, UpdateCarDto } from './dto';
 
 // Importamos y agregamos los id unicos de los carros como si vinieran de una base de datos
 
@@ -55,5 +55,29 @@ export class CarsService {
             this.cars.push(car)
 
             return car;
+        }
+
+        update(id:string, updateCarDto:UpdateCarDto){
+            let carDB = this.findOneById(id); // utilizamos el metodo de encontrar uno por el id que ya habiamos definido arriba
+
+            if ( updateCarDto.id && updateCarDto.id !== id){
+                throw new BadRequestException(`El id del cuerpo proporcionado no es valido`)
+            }
+
+            // como estamos trabajando en un array local debemos mapear el array local
+            this.cars = this.cars.map( car => {
+                if (car.id === id){
+                    carDB = {
+                        ...carDB,
+                        ...updateCarDto,
+                        id
+                    }
+                    
+                    return carDB;
+                }
+                return car;
+            })
+
+            return carDB; // retornamos el carro actualizado
         }
     }

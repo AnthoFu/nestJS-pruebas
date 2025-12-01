@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patc
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
 import { create } from 'domain';
+import { UpdateCarDto } from './dto/update-car.dto';
 @Controller('cars') // Si agregamos los pipes aca en el controlador, todos los metodos podran utilizar este pipe
 //@UsePipes(ValidationPipe)
 export class CarsController {
@@ -29,9 +30,9 @@ export class CarsController {
 
     @Patch(':id')
     updateCar( 
-        @Param ('id', ParseIntPipe) id: number,
-        @Body() body:any ){
-        return body;
+        @Param ('id', ParseUUIDPipe) id: string,
+        @Body() updateCarDto:UpdateCarDto ){
+        return this.carsService.update(id, updateCarDto);
     }
 
     @Delete('id')
