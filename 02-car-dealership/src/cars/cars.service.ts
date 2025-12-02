@@ -80,4 +80,10 @@ export class CarsService {
 
             return carDB; // retornamos el carro actualizado
         }
+
+        delete(id:string){
+            const car = this.findOneById(id);
+            this.cars = this.cars.filter(car => car.id !== id)
+            return;
+        }
     }
