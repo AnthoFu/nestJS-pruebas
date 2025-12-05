@@ -11,21 +11,21 @@ export class CarsService {
     // Aqui agregamos la interfaz que hemos hecho y decimos 'este campo es un arreglo de la interfaz Car'
     // Esto nos dara errores de typescript si es que falta algun dato
             private cars: Car[] = [
-                {
-                id:uuid(),
-                brand: 'Toyota',
-                model: 'Corolla'
-            },
-            {
-                id:uuid(),
-                brand: 'Honda',
-                model: 'Civic'
-            },
-            {
-                id:uuid(),
-                brand: 'Jeep',
-                model: 'Cherokee'
-            }
+            //     {
+            //     id:uuid(),
+            //     brand: 'Toyota',
+            //     model: 'Corolla'
+            // },
+            // {
+            //     id:uuid(),
+            //     brand: 'Honda',
+            //     model: 'Civic'
+            // },
+            // {
+            //     id:uuid(),
+            //     brand: 'Jeep',
+            //     model: 'Cherokee'
+            // }
         ]
 
 
@@ -85,5 +85,9 @@ export class CarsService {
             const car = this.findOneById(id);
             this.cars = this.cars.filter(car => car.id !== id)
             return;
+        }
+
+        fillCarsWithSeedData(cars: Car[]){
+            this.cars = cars;
         }
     }
